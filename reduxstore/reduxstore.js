@@ -28,10 +28,6 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = createStore(
   persistedReducer,
-  {
-    loading: false,
-    user: false
-   },
   applyMiddleware(thunkMiddleware, createLogger())
 );
 
