@@ -41,6 +41,9 @@ const styles = StyleSheet.create({
   },
   highlight: {
     fontWeight: '700',
+  },
+  typography: {
+    fontFamily: 'FiraSans-Regular'
   }
 });
 
@@ -61,7 +64,7 @@ const IndexView = (props)=> {
 
           <View style={styles.body}>
             {!props.isAuthenticated && <Text  > Login out </Text>}
-            {props.isAuthenticated && <Text  > in  </Text>}
+            {props.isAuthenticated && <Text style={styles.typography}   > I am going to kill this kids  </Text>}
           </View>
         </ScrollView>
       </SafeAreaView>
