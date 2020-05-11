@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import { store, persistor } from './reduxstore/reduxstore';
 
 //Views
-import IndexView from './Views/IndexView.react';
+import IndexView from './Views/IndexView';
 
 const App = () => {
   return (

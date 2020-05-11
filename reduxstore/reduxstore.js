@@ -14,7 +14,7 @@ import {createLogger} from 'redux-logger';
 
 
 //Spendingo Reducers
-import rootReducer from "./reducers";
+import rootReducer from "../reducers";
 
 //Define persist config
 
