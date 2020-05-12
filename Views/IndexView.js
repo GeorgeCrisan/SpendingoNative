@@ -1,7 +1,13 @@
-import React , { useState, useEffect} from 'react';
-import {connect, dispatch } from 'react-redux';
-import {loginUser, createUser} from '../actions';
+import React, { useState, useEffect } from 'react';
+import { connect, dispatch } from 'react-redux';
+import { loginUser, createUser } from '../actions';
 //Native Imports
+
+
+//Child Components
+import Header from '../Components/Header';
+import LinearGradient from 'react-native-linear-gradient';
+import IndexContainer from './IndexContainer';
 
 import {
   SafeAreaView,
@@ -13,18 +19,16 @@ import {
 } from 'react-native';
 
 // Style
+const STATUSBAR_HEIGHT = Platform.OS === 'ios' ? 20 : StatusBar.currentHeight;
+
 
 const styles = StyleSheet.create({
   scrollView: {
     backgroundColor: ("#fff500"),
   },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
-  body: {
-    backgroundColor: "#fff",
-    color: '#faa500'
+  container: {
+    flex: 1
+
   },
   sectionContainer: {
     marginTop: 32,
@@ -44,30 +48,48 @@ const styles = StyleSheet.create({
   },
   typography: {
     fontFamily: 'FiraSans-Regular'
-  }
+  },
+  gradient: {
+    flex: 1
+  },
+  statusBar: {
+    height: STATUSBAR_HEIGHT,
+  },
 });
 
+const MyStatusBar = ({ ...props }) => (
+  <LinearGradient
+    style={styles.statusBar}
+    start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
+    colors={['#242478', '#3b5998', '#1b9bb5']}>
 
-const IndexView = (props)=> {
+    <StatusBar translucent {...props} />
+  </LinearGradient>
+);
 
-    console.log(props.isAuthenticated);
-    useEffect(()=>{
-      props.authEmailPass('georgerdp@gmail.com','test22');
-    },[]);
-    console.log('user ********************************');
+
+
+const IndexView = (props) => {
+
+  console.log(props.isAuthenticated);
+  useEffect(() => {
+    //props.authEmailPass('georgerdp@gmail.com','test22');
+  }, []);
+
   return (<>
-    <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
+    <View style={styles.container}>
+      <MyStatusBar backgroundColor="#1b9bb5" barStyle="light-content" />
+      <View style={styles.container}>
+        <LinearGradient
+          style={styles.gradient}
+          start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
+          colors={['#242478', '#3b5998', '#1b9bb5']}>
+          <Header />
+          <IndexContainer isAuthenticated={props.isAuthenticated} user={props.user} />
+        </LinearGradient>
+      </View>
 
-          <View style={styles.body}>
-            {!props.isAuthenticated && <Text  > Login out </Text>}
-            {props.isAuthenticated && <Text style={styles.typography}   > I am going to kill this kids  </Text>}
-          </View>
-        </ScrollView>
-      </SafeAreaView>
+    </View>
   </>);
 };
 
@@ -80,11 +102,11 @@ function mapStateToProps(state) {
 }
 
 function mapDsipatchToProps(dispatch) {
-    return {
-      authEmailPass: (email,pass) => {
-        dispatch(loginUser(email,pass));
-      }
+  return {
+    authEmailPass: (email, pass) => {
+      dispatch(loginUser(email, pass));
     }
+  }
 }
 
 export default connect(mapStateToProps, mapDsipatchToProps)(IndexView);
