@@ -1,25 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { connect, dispatch } from 'react-redux';
-import { loginUser, createUser } from '../actions';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import {logoutUser} from '../actions';
 //Native Imports
-
+import { createStackNavigator } from '@react-navigation/stack';
 
 //Child Components
-import Header from '../Components/Header';
 import LinearGradient from 'react-native-linear-gradient';
 import IndexContainer from './IndexContainer';
+import Login from './Login';
+import Signup from './Signup';
+import MyStatusBar from '../Components/MyStatusBar';
+import Dashboard from './Dashboard';
 
 import {
-  SafeAreaView,
   StyleSheet,
-  ScrollView,
   View,
-  Text,
-  StatusBar,
 } from 'react-native';
 
-// Style
-const STATUSBAR_HEIGHT = Platform.OS === 'ios' ? 20 : StatusBar.currentHeight;
+
 
 
 const styles = StyleSheet.create({
@@ -28,7 +26,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1
-
   },
   sectionContainer: {
     marginTop: 32,
@@ -52,41 +49,61 @@ const styles = StyleSheet.create({
   gradient: {
     flex: 1
   },
-  statusBar: {
-    height: STATUSBAR_HEIGHT,
-  },
 });
 
-const MyStatusBar = ({ ...props }) => (
-  <LinearGradient
-    style={styles.statusBar}
-    start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
-    colors={['#242478', '#3b5998', '#1b9bb5']}>
-
-    <StatusBar translucent {...props} />
-  </LinearGradient>
-);
-
+const Stack = createStackNavigator();
 
 
 const IndexView = (props) => {
-
-  console.log(props.isAuthenticated);
+  let {isAuthenticated} = props;
+  console.log(props.isAuthenticated, '&&&&$%%$$$$');
   useEffect(() => {
     //props.authEmailPass('georgerdp@gmail.com','test22');
+    //temp dispatch shoud add to map actions to props
+    props.logOut();
   }, []);
+
 
   return (<>
     <View style={styles.container}>
       <MyStatusBar backgroundColor="#1b9bb5" barStyle="light-content" />
       <View style={styles.container}>
-        <LinearGradient
-          style={styles.gradient}
-          start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
-          colors={['#242478', '#3b5998', '#1b9bb5']}>
-          <Header />
-          <IndexContainer isAuthenticated={props.isAuthenticated} user={props.user} />
-        </LinearGradient>
+        
+           <Stack.Navigator
+            screenOptions={{
+              headerTransparent: true,
+              headerTitleAlign: 'right',
+              headerBackground: () => (  <LinearGradient 
+                start={{ x: 0, y: 0 }} 
+                end={{ x: 1, y: 0 }} 
+                style={{flex: 1, height: 60}}
+                colors={['#242478', '#3b5998', '#1b9bb5']}/>),
+              headerTitleStyle: {
+                color: '#fff',
+                fontSize: 0.01
+              }
+            }}>
+              {isAuthenticated && <Stack.Screen
+             name="Dashboard"
+             component={Dashboard}
+             />}
+
+            {!isAuthenticated && (<>
+             <Stack.Screen
+             name="Home"
+             component={IndexContainer}
+             />
+              <Stack.Screen
+             name="Log In"
+             component={Login}
+             />
+              <Stack.Screen
+             name="Create Account"
+             component={Signup}
+             />
+            </>)}
+           </Stack.Navigator>
+        
       </View>
 
     </View>
@@ -94,6 +111,7 @@ const IndexView = (props) => {
 };
 
 function mapStateToProps(state) {
+  console.log(state);
   return {
     user: state.auth.user,
     isAuthenticated: state.auth.isAuthenticated
@@ -103,8 +121,8 @@ function mapStateToProps(state) {
 
 function mapDsipatchToProps(dispatch) {
   return {
-    authEmailPass: (email, pass) => {
-      dispatch(loginUser(email, pass));
+    logOut: () => {
+      dispatch(logoutUser());
     }
   }
 }

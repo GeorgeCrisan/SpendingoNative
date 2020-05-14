@@ -1,7 +1,8 @@
 import React from 'react';
 import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
-//import storage from 'redux-persist/lib/storage';
+import 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
 
 //Redux local config 
 
@@ -13,11 +14,13 @@ import IndexView from './Views/IndexView';
 const App = () => {
   return (
     <>
+    <NavigationContainer>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <IndexView />
         </PersistGate>
       </Provider>
+      </NavigationContainer>
     </>
   );
 };

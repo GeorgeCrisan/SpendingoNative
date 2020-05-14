@@ -1,9 +1,6 @@
 import React from 'react';
 
-import LinearGradient from 'react-native-linear-gradient';
-
 import {
-  SafeAreaView,
   StyleSheet,
   View,
   Text,
@@ -37,6 +34,12 @@ const styles = StyleSheet.create({
 });
 
 const Header = (props) => {
+    if(props.customText) {
+      return (<View style={styles.container}>
+        <Text style={styles.header}  > {`${props.customText}`} </Text>
+      </View>);
+    }
+
     return (
       <View style={styles.container}>
         <Text style={styles.header}  > {props.isAuthenticated ? `Welcome,  ${props.displayName}` : 'SpendingoNative'} </Text>

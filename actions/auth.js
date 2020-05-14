@@ -230,6 +230,7 @@ export const loginUser = (email, password) => dispatch => {
 };
 
 export const logoutUser = () => dispatch => {
+  console.log('this is used');
   dispatch(requestLogout());
   myFirebase
     .auth()
