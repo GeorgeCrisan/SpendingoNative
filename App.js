@@ -14,13 +14,15 @@ import IndexView from './Views/IndexView';
 const App = () => {
   return (
     <>
-    <NavigationContainer>
+
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <IndexView />
+          <NavigationContainer>
+            <IndexView />
+          </NavigationContainer>
         </PersistGate>
       </Provider>
-      </NavigationContainer>
+
     </>
   );
 };
