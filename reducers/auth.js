@@ -22,7 +22,7 @@ export default (state = {
   isLoggingIn: false,
   isLoggingOut: false,
   isVerifying: false,
-  logginError: { isError: false, message: "", statusCode: "" },
+  loginError: { isError: false, message: "", statusCode: "" },
   logoutError: { isError: false, message: "", statusCode: "" },
   createError: { isError: false, message: "", statusCode: "" },
   resetPassErr: {isError: false, message: '', statusCode: ''},
@@ -31,9 +31,9 @@ export default (state = {
   accountDeleted: false,
   user: {}
 }, action) => {
-  //console.log('Action Type:', action.type );
+   console.log('Action Type:', action.type );
   if(action?.error) {
-    //console.log( 'Error:' ,(action?.error));
+    console.log( 'Error:' ,(action?.error));
   } 
   switch (action.type) {
     case DELETE_ACCOUNT_FAIL:
@@ -80,11 +80,12 @@ export default (state = {
 
     case LOGIN_FAILURE:
       let errorLF = action.error;
+      console.log('got error', errorLF);
       return {
         ...state,
         isLoggingIn: false,
         isAuthenticated: false,
-        loginError: { isError: true, message: errorLF.message, statusCode: errorLF.code }
+        loginError: { isError: true, message: errorLF.message, code: errorLF.code }
       };
 
     case LOGOUT_REQUEST:
@@ -99,6 +100,7 @@ export default (state = {
         ...state,
         isLoggingOut: false,
         isAuthenticated: false,
+        loginError: {isError: false, message: "" , statusCode: ""},
         user: {},
         accountDeleted: false
       };

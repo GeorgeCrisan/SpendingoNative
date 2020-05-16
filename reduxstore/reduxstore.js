@@ -10,7 +10,7 @@ import { persistStore, persistReducer } from 'redux-persist';
 
 // Redux Logger
 
-import {createLogger} from 'redux-logger';
+//import {createLogger} from 'redux-logger';
 
 
 //Spendingo Reducers
@@ -28,7 +28,8 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = createStore(
   persistedReducer,
-  applyMiddleware(thunkMiddleware, createLogger())
+  //applyMiddleware(thunkMiddleware, createLogger())
+  applyMiddleware(thunkMiddleware)
 );
 
 const persistor = persistStore(store); 

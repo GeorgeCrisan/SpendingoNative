@@ -72,16 +72,28 @@ const styles = StyleSheet.create({
   input: {
     padding: 32,
     marginBottom: 16
+  },
+  error: {
+    color: 'red',
+    paddingBottom: 8
   }
 });
 
 
 
 const Login = (props) => {
+  
+  const [formState, setFormState] = useState({
+    email: "",
+    password: "",
+    error: ""
+  });
 
-  useEffect(() => {
-    //props.authEmailPass('georgerdp@gmail.com','test22');
-  }, []);
+  const changes = (type,value)=> {
+      let newFormState = {...formState};
+      newFormState[type] = value;
+      setFormState(newFormState);
+  }
    
   const [borderBottomColor, setBorderBottomColor] = useState({
     unu: 'gray',
@@ -93,9 +105,12 @@ const Login = (props) => {
   const setBorderBottomColorT = (type,color)=> {
       let borderBottomColor2 = {...borderBottomColor};
       borderBottomColor2[type] = color;
-      console.log(borderBottomColor2, 'now');
       setBorderBottomColor(borderBottomColor2);
   }
+  if(props.error) {
+    console.log('what error', props.error, typeof props.error);
+  }
+  
 
   return (
     <View style={{ flex: 1, marginTop: headerHeight }}>
@@ -129,7 +144,7 @@ const Login = (props) => {
               />
             }
             style={styles.input}
-            onChangeText={() => { }}
+            onChangeText={(e) => { changes('email', e);  }}
           />
           <Input
             placeholder="Password"
@@ -148,11 +163,13 @@ const Login = (props) => {
               />
             }
             style={styles.input}
-            onChangeText={() => { }}
+            onChangeText={(e) => { changes('password', e);  }}
           />
+          {props.error && <Text style={styles.error} > {props.error.message} </Text>}
           <Button
             title="Log in"
             type="outline"
+            onPress={() => props.authEmailPass(formState.email, formState.password) }
             buttonStyle={{borderWidth: 1.6}}
             titleStyle={{fontFamily: 'Mina-Regular', fontWeight: 'bold'}}
             style={{marginTop: 16}}
@@ -167,6 +184,8 @@ const Login = (props) => {
 function mapStateToProps(state) {
   return {
     user: state.auth.user,
+    loading: state.auth.loading,
+    error: state.auth.loginError,
     isAuthenticated: state.auth.isAuthenticated
 
   };
@@ -175,7 +194,7 @@ function mapStateToProps(state) {
 function mapDsipatchToProps(dispatch) {
   return {
     authEmailPass: (email, pass) => {
-      dispatch(loginUser(email, pass));
+      dispatch(loginUser(email , pass));
     }
   }
 }

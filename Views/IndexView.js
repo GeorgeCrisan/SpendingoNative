@@ -56,7 +56,7 @@ const Stack = createStackNavigator();
 
 const IndexView = (props) => {
   let {isAuthenticated} = props;
-  console.log(props.isAuthenticated, '&&&&$%%$$$$');
+  console.log(props.isAuthenticated, 'is Auth');
   useEffect(() => {
     //props.authEmailPass('georgerdp@gmail.com','test22');
     //temp dispatch shoud add to map actions to props
@@ -111,7 +111,6 @@ const IndexView = (props) => {
 };
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     user: state.auth.user,
     isAuthenticated: state.auth.isAuthenticated
