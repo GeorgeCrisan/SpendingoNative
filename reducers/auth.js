@@ -131,6 +131,8 @@ export default (state = {
       return {
         ...state,
         user: action.payload,
+        loading: false,
+        isAuthenticated: true,
         createError: { isError: false, message: '', statusCode: '' }
       }
 

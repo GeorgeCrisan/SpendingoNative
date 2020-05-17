@@ -48,9 +48,10 @@ const requestCreateUser = () => {
   };
 };
 
-const successCreateUser = () => {
+const successCreateUser = (user) => {
   return {
-    type: CREATEUSER_SUCCESS
+    type: CREATEUSER_SUCCESS,
+    payload: user
   };
 };
 

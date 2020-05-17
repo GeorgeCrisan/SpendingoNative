@@ -19,7 +19,7 @@ import {
 } from 'react-native';
 
 import { Button } from 'react-native-elements';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 import { Input } from 'react-native-elements';
 // Style
 const STATUSBAR_HEIGHT = Platform.OS === 'ios' ? 20 : StatusBar.currentHeight;
@@ -89,6 +89,8 @@ const Login = (props) => {
     error: ""
   });
 
+  const [eye, setEye] = useState(true);
+
   const changes = (type,value)=> {
       let newFormState = {...formState};
       newFormState[type] = value;
@@ -107,9 +109,6 @@ const Login = (props) => {
       borderBottomColor2[type] = color;
       setBorderBottomColor(borderBottomColor2);
   }
-  if(props.error) {
-    console.log('what error', props.error, typeof props.error);
-  }
   
 
   return (
@@ -122,7 +121,7 @@ const Login = (props) => {
 
         <View style={styles.formCard}>
           <Icon
-            name="user-circle"
+            name="keycdn"
             size={50}
             color="#faa500"
             style={{ alignSelf: 'center', paddingBottom: 16 }}
@@ -130,6 +129,7 @@ const Login = (props) => {
           <Input
             placeholder="Email"
             label='Email Address'
+            autoCapitalize="none"
             onFocus={()=>{ setBorderBottomColorT('unu', '#2196f3') }}
             onBlur={()=>{ setBorderBottomColorT( 'unu', 'grey') }}
             inputContainerStyle={{
@@ -149,11 +149,24 @@ const Login = (props) => {
           <Input
             placeholder="Password"
             label='Password'
+            autoCapitalize="none"
+            secureTextEntry={eye}
             onFocus={()=>{ setBorderBottomColorT('doi','#2196f3') }}
             onBlur={()=>{ setBorderBottomColorT('doi', 'gray') }}
             inputContainerStyle={{
               borderBottomColor: borderBottomColor['doi']
             }}
+            
+            rightIcon={
+              <Icon
+              name='eye'
+              size={16}
+              style={{marginRight: 4}}
+              color={borderBottomColor['doi'] ?? 'gray'}
+              onPress={()=>{setEye(!eye)}}
+            />
+            }
+
             leftIcon={
               <Icon
                 name='lock'
