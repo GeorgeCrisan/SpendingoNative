@@ -27,6 +27,8 @@ export const REQUEST_PASS_START = 'REQUEST_PASS_START';
 export const DELETE_ACCOUNT_SUCCESS = 'DELETE_ACCOUNT_SUCCESS';
 export const DELETE_ACCOUNT_FAIL = 'DELETE_ACCOUNT_FAIL';
 
+export const RESET_ERROR = 'RESET_ERROR';
+
 //Raw Actions
 const updateUser = (user) => {
   return {
@@ -74,6 +76,7 @@ const successLogin = user => {
     payload: user
   };
 };
+
 
 const errorLogin = (err) => {
   return {
@@ -145,6 +148,11 @@ export const deleteFail = (error) => {
 }
 
 //Thunks
+export const resetError = () => {
+  return {
+    type: RESET_ERROR
+  };
+}
 
 export const deleteAccount = (password) => dispatch => {
 

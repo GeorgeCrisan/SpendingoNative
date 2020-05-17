@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect, dispatch } from 'react-redux';
-import { loginUser, resetError } from '../actions';
+import { passwordReset, resetError } from '../actions';
 import { useHeaderHeight } from '@react-navigation/stack';
 import Header from '../Components/Header';
 
@@ -32,18 +32,17 @@ const styles = StyleSheet.create({
     flex: 1
   },
   gradient: {
-    justifyContent: 'center'
+    flex: 1
   },
   formCard: {
     flex: 1,
     backgroundColor: '#fff',
     justifyContent: 'center',
-    maxHeight: 440,
+    maxHeight: 400,
     padding: 16,
     marginLeft: 16,
     borderRadius: 5,
-    marginRight: 16,
-    marginTop: 30
+    marginRight: 16
   },
   sectionContainer: {
     marginTop: 32,
@@ -76,17 +75,25 @@ const styles = StyleSheet.create({
   },
   error: {
     color: 'red',
-    paddingBottom: 8
+    paddingBottom: 16,
+    paddingTop: 16,
+    fontSize: 18
+  },
+  done: {
+    color: 'green',
+    textAlign: 'center',
+    paddingBottom: 16,
+    fontSize: 20,
+    paddingTop: 16
   }
 });
 
 
 
-const Login = (props) => {
+const Resetpassword = (props) => {
   const {navigation} = props;
   const [formState, setFormState] = useState({
     email: "",
-    password: "",
     error: ""
   });
 
@@ -94,7 +101,7 @@ const Login = (props) => {
     props.resetError();
   },[]);
 
-  const [eye, setEye] = useState(true);
+  const [done, setDone] = useState(false);
 
   const changes = (type,value)=> {
       let newFormState = {...formState};
@@ -114,18 +121,25 @@ const Login = (props) => {
       borderBottomColor2[type] = color;
       setBorderBottomColor(borderBottomColor2);
   }
+
+  const resetRequest = () => {
+    setDone(!done);
+    props.passwordReset(formState.email);
+  }
   
 
   return (
-    <View style={{ display: 'flex', flex: 1,justifyContent: 'center',  marginTop: headerHeight }}>
+    <View style={{ flex: 1, marginTop: headerHeight }}>
       <LinearGradient
         style={styles.gradient}
         start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
         colors={['#242478', '#3b5998', '#1b9bb5']}>
-        <Header customText={'Please log in to your account'} />
+        <Header customText={'Request a link to reset your password'} />
+
         <View style={styles.formCard}>
+          {!done && <>
           <Icon
-            name="keycdn"
+            name="envelope-open-text"
             size={50}
             color="#faa500"
             style={{ alignSelf: 'center', paddingBottom: 16 }}
@@ -150,51 +164,22 @@ const Login = (props) => {
             style={styles.input}
             onChangeText={(e) => { changes('email', e);  }}
           />
-          <Input
-            placeholder="Password"
-            label='Password'
-            autoCapitalize="none"
-            secureTextEntry={eye}
-            onFocus={()=>{ setBorderBottomColorT('doi','#2196f3') }}
-            onBlur={()=>{ setBorderBottomColorT('doi', 'gray') }}
-            inputContainerStyle={{
-              borderBottomColor: borderBottomColor['doi']
-            }}
-            
-            rightIcon={
-              <Icon
-              name='eye'
-              size={16}
-              style={{marginRight: 4}}
-              color={borderBottomColor['doi'] ?? 'gray'}
-              onPress={()=>{setEye(!eye)}}
-            />
-            }
 
-            leftIcon={
-              <Icon
-                name='lock'
-                size={24}
-                style={{marginRight: 4}}
-                color={borderBottomColor['doi'] ?? 'gray'}
-              />
-            }
-            style={styles.input}
-            onChangeText={(e) => { changes('password', e);  }}
-          />
-          {props.error && <Text style={styles.error} > {props.error.message} </Text>}
-          
           <Button
-            title="Log in"
+            title="Reset Password"
             type="outline"
-            onPress={() => props.authEmailPass(formState.email, formState.password) }
+            onPress={resetRequest  }
             buttonStyle={{borderWidth: 1.6}}
             titleStyle={{fontFamily: 'Mina-Regular', fontWeight: 'bold'}}
-            style={{marginBottom: 8 }}
+            style={{marginTop: 16}}
           />
-          <Button style={{marginTop: 8}} title={'Reset password'} onPress={() => navigation.navigate('Reset Password')} />
+          </>}
+          {done && <>
+            {!props.error.isError && <Text style={styles.done}> Password request successful. </Text>}
+            {props.error && <Text style={styles.error} > {props.error.message} </Text>}
+            <Button title={'Reset again'} onPress={()=>{setDone(!done)}} />
+          </> }
         </View>
-
 
       </LinearGradient>
     </View>
@@ -205,7 +190,7 @@ function mapStateToProps(state) {
   return {
     user: state.auth.user,
     loading: state.auth.loading,
-    error: state.auth.loginError,
+    error: state.auth.resetPassErr,
     isAuthenticated: state.auth.isAuthenticated
 
   };
@@ -213,8 +198,8 @@ function mapStateToProps(state) {
 
 function mapDsipatchToProps(dispatch) {
   return {
-    authEmailPass: (email, pass) => {
-      dispatch(loginUser(email , pass));
+    passwordReset: (email, pass) => {
+      dispatch(passwordReset(email , pass));
     },
     resetError: () => {
       dispatch(resetError());
@@ -222,4 +207,4 @@ function mapDsipatchToProps(dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDsipatchToProps)(Login);
+export default connect(mapStateToProps, mapDsipatchToProps)(Resetpassword);

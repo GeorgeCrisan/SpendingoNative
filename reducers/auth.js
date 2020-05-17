@@ -12,6 +12,7 @@ import {
   REQUEST_PASS_SUCCESS,
   REQUEST_PASS_FAIL,
   DELETE_ACCOUNT_SUCCESS,
+  RESET_ERROR,
   DELETE_ACCOUNT_FAIL,
   //REATEUSER_REQUEST,
   //UPDATE_USER,
@@ -36,6 +37,14 @@ export default (state = {
     console.log( 'Error:' ,(action?.error));
   } 
   switch (action.type) {
+    case RESET_ERROR:
+      return {
+            ...state,
+            loginError: { isError: false, message: "", statusCode: "" },
+            logoutError: { isError: false, message: "", statusCode: "" },
+            createError: { isError: false, message: "", statusCode: "" },
+            resetPassErr: {isError: false, message: '', statusCode: ''},
+      };
     case DELETE_ACCOUNT_FAIL:
       return {
         ...state,

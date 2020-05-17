@@ -11,14 +11,13 @@ import {
 
 const styles = StyleSheet.create({
   container: {
-    minHeight: 160,
-    paddingTop: 64,
-    paddingBottom: 64,
-    justifyContent: 'center'
+    paddingTop: 32,
+    paddingBottom: 32,
+    justifyContent: 'center',
   },
    header: {
      color: '#fff',
-     fontSize: 32,
+     fontSize: 25,
      fontFamily: 'Mina-Bold',
      textAlign: 'center',
      alignSelf: 'center',

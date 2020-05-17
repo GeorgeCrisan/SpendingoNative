@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     padding: 32,
     //flexDirection: 'row',
     justifyContent: 'center',
-    paddingBottom: 100
+    paddingBottom: 50
   },
   buttonContainerM1: {
     padding: 14,

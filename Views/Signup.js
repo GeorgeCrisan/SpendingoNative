@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect, dispatch } from 'react-redux';
-import { createUser } from '../actions';
+import { createUser, resetError } from '../actions';
 import { useHeaderHeight } from '@react-navigation/stack';
 import Header from '../Components/Header';
 
@@ -32,16 +32,18 @@ const styles = StyleSheet.create({
     flex: 1
   },
   gradient: {
-    flex: 1
+    flex: 1,
+    justifyContent: 'space-around'
   },
   formCard: {
     flex: 1,
     backgroundColor: '#fff',
     justifyContent: 'center',
-    maxHeight: 500,
+    maxHeight: 480,
     padding: 16,
     marginLeft: 16,
     borderRadius: 5,
+    marginTop: 10,
     marginRight: 16
   },
   sectionContainer: {
@@ -93,6 +95,11 @@ const Signup = (props) => {
 
   const [eye, setEye] = useState(true);
 
+
+  useEffect(()=>{
+    props.resetError();
+  },[]);
+
   const changes = (type,value)=> {
       let newFormState = {...formState};
       newFormState[type] = value;
@@ -115,18 +122,24 @@ const Signup = (props) => {
   
 
   return (
-    <View style={{ flex: 1, marginTop: headerHeight }}>
+    <View style={{ flex: 1, justifyContent: 'space-around', marginTop: headerHeight }}>
       <LinearGradient
         style={styles.gradient}
         start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
         colors={['#242478', '#3b5998', '#1b9bb5']}>
 
+        <View>
+
         <Text style={{textAlign: 'center',
-          fontSize: 30,
-          marginTop: 32,
+          fontSize: 26,
+          marginTop: 16,
+          fontWeight: 'bold',
           padding: 16,
           color: 'white',
           fontFamily: 'Mina-Regular'}}> Create account </Text>
+
+        </View>
+        
 
         <View style={styles.formCard}>
           <Icon
@@ -237,6 +250,9 @@ function mapDsipatchToProps(dispatch) {
   return {
     createUser: (email, pass, dn) => {
       dispatch(createUser(email , pass, dn));
+    },
+    resetError: () => {
+      dispatch(resetError());
     }
   }
 }
