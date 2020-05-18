@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { connect, dispatch } from 'react-redux';
+import { connect } from 'react-redux';
 import { createUser, resetError } from '../actions';
-import { useHeaderHeight } from '@react-navigation/stack';
 import Header from '../Components/Header';
 
 //Native Imports
@@ -112,7 +111,6 @@ const Signup = (props) => {
     trei: 'gray'
   });
 
-  const headerHeight = useHeaderHeight();
 
   const setBorderBottomColorT = (type,color)=> {
       let borderBottomColor2 = {...borderBottomColor};
@@ -122,7 +120,7 @@ const Signup = (props) => {
   
 
   return (
-    <View style={{ flex: 1, justifyContent: 'space-around', marginTop: headerHeight }}>
+    <View style={{ flex: 1, justifyContent: 'space-around', marginTop: 0 }}>
       <LinearGradient
         style={styles.gradient}
         start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect, dispatch } from 'react-redux';
 import { passwordReset, resetError } from '../actions';
-import { useHeaderHeight } from '@react-navigation/stack';
 import Header from '../Components/Header';
 
 //Native Imports
@@ -114,7 +113,6 @@ const Resetpassword = (props) => {
     doi: 'gray'
   });
 
-  const headerHeight = useHeaderHeight();
 
   const setBorderBottomColorT = (type,color)=> {
       let borderBottomColor2 = {...borderBottomColor};
@@ -129,7 +127,7 @@ const Resetpassword = (props) => {
   
 
   return (
-    <View style={{ flex: 1, marginTop: headerHeight }}>
+    <View style={{ flex: 1, marginTop: 0 }}>
       <LinearGradient
         style={styles.gradient}
         start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}

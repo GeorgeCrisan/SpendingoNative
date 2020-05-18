@@ -87,11 +87,10 @@ const styles = StyleSheet.create({
 const IndexContainer = (props) => {
 
   const { navigation } = props;
-  const headerHeight = useHeaderHeight();
 
   return (<>
     <LinearGradient
-      style={{ ...styles.gradient, marginTop: headerHeight }}
+      style={{ ...styles.gradient, marginTop: 0 }}
       start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
       colors={['#242478', '#3b5998', '#1b9bb5']}>
       <Header />

@@ -56,6 +56,9 @@ const styles = StyleSheet.create({
   statusBar: {
     height: STATUSBAR_HEIGHT,
   },
+  title: {
+    marginTop: 10
+  }
 });
 
 
@@ -71,9 +74,14 @@ const Dashboard = (props) => {
 
   return (<>
     <View style={styles.container}>
-      <View style={styles.container}>
-        <Text> Dashboard </Text>
-      </View>
+    <LinearGradient
+        style={styles.gradient}
+        start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
+        colors={['#242478', '#3b5998', '#1b9bb5']}>
+
+        <Text style={styles.title} > Dashboard </Text>
+        </LinearGradient>
+
 
     </View>
   </>);

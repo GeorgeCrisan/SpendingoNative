@@ -107,8 +107,6 @@ const Login = (props) => {
     doi: 'gray'
   });
 
-  const headerHeight = useHeaderHeight();
-
   const setBorderBottomColorT = (type,color)=> {
       let borderBottomColor2 = {...borderBottomColor};
       borderBottomColor2[type] = color;
@@ -117,7 +115,7 @@ const Login = (props) => {
   
 
   return (
-    <View style={{ display: 'flex', flex: 1,justifyContent: 'center',  marginTop: headerHeight }}>
+    <View style={{ display: 'flex', flex: 1,justifyContent: 'center',  marginTop: 0 }}>
       <LinearGradient
         style={styles.gradient}
         start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
