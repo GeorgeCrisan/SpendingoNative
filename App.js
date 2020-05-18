@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 
+
 //Redux local config 
 
 import { store, persistor } from './reduxstore/reduxstore';

@@ -57,13 +57,13 @@ const Stack = createStackNavigator();
 
 
 const IndexView = (props) => {
-  let { isAuthenticated } = props;
-  console.log(props.isAuthenticated, 'is Auth');
+
+  let { isAuthenticated, loading } = props;
+
   useEffect(() => {
     //props.authEmailPass('georgerdp@gmail.com','test22');
     //temp dispatch shoud add to map actions to props
-    
-    props.logOut();
+    //props.logOut();
   }, []);
 
 
@@ -86,12 +86,14 @@ const IndexView = (props) => {
               fontSize: 0.01
             }
           }}>
-          {isAuthenticated && <Stack.Screen
+          {!loading && isAuthenticated && <Stack.Screen
             name="Dashboard"
             component={Dashboard}
           />}
 
-          {!isAuthenticated && (<>
+          {loading && <ActivityIndicator size="large" color="#fff" />}
+            
+          {!loading && !isAuthenticated && (<>
             <Stack.Screen
               name="Home"
               component={IndexContainer}
@@ -120,6 +122,7 @@ const IndexView = (props) => {
 function mapStateToProps(state) {
   return {
     user: state.auth.user,
+    loading: state.auth.loading,
     isAuthenticated: state.auth.isAuthenticated
 
   };

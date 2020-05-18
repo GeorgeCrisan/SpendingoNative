@@ -82,16 +82,21 @@ const Dashboard = (props) => {
 function mapStateToProps(state) {
   return {
     user: state.auth.user,
-    isAuthenticated: state.auth.isAuthenticated
+    isAuthenticated: state.auth.isAuthenticated,
+    loading: state.budgets.loading,
+    budgets: state.budgets.budgets
 
   };
 }
 
 function mapDsipatchToProps(dispatch) {
   return {
-    authEmailPass: (email, pass) => {
-      dispatch(loginUser(email, pass));
-    }
+    logOut: () => {
+      dispatch(logoutUser());
+    },
+    fetchBudgets: () => {
+      dispatch(fetchBudgets());
+    },
   }
 }
 
