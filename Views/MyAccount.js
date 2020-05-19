@@ -10,9 +10,16 @@ import {
   ActivityIndicator
 } from 'react-native';
 
+const styles = StyleSheet.create({
+  container: {
+   flex: 1,
+   backgroundColor: 'blue'
+  } 
+});
+
 const MyAccount = () => {
   return (
-    <View style={{marginTop:  50, flex: 1, backgroundColor: 'yellow'}}>
+    <View style={styles.container}>
     <Text style={{flex: 1,color: 'black', fontSize: 100}} > Hello world 3 </Text>
   </View>
   );
