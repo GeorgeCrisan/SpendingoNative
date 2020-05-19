@@ -2,13 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { loginUser, logoutUser } from '../actions';
 import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+
 
 //Native Imports
 
 //Child Components
-import Header from '../Components/Header';
-import MyStatusBar from '../Components/MyStatusBar';
 //import Ionicons from 'react-native-vector-icons/Ionicons';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import LinearGradient from 'react-native-linear-gradient';
@@ -32,7 +31,7 @@ import NewBudget from './NewBudget';
 
 // Style
 const STATUSBAR_HEIGHT = Platform.OS === 'ios' ? 20 : StatusBar.currentHeight;
-const Tab = createBottomTabNavigator();
+const Tab = createMaterialBottomTabNavigator();
 
 const styles = StyleSheet.create({
   scrollView: {
@@ -76,6 +75,7 @@ const Dashboard = (props) => {
 
           <NavigationContainer  independent={true}>
             <Tab.Navigator
+              activeColor="lime"
               screenOptions={({ route }) => ({
                 tabBarIcon: ({ focused, color, size }) => {
                   let iconName;
@@ -91,7 +91,7 @@ const Dashboard = (props) => {
                   }
 
                   // You can return any component that you like here!
-                  return <Icon name={iconName} size={size} color={color} />;
+                  return <Icon name={iconName} size={26} color={focused ? '#fff' : '#fff' } />;
                 },
               })}
               tabBarOptions={{

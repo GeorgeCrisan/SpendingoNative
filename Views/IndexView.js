@@ -79,7 +79,7 @@ const IndexView = (props) => {
             headerBackground: () => (<LinearGradient
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 0 }}
-              style={{ flex: 1, height: 20 }}
+              style={{ flex: 1,  }}
               colors={['#242478', '#3b5998', '#1b9bb5']} />),
             headerTitleStyle: {
               color: '#fff',
