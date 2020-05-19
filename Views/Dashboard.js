@@ -80,13 +80,13 @@ const Dashboard = (props) => {
                 tabBarIcon: ({ focused, color, size }) => {
                   let iconName;
 
-                  if (route.name === 'Home') {
+                  if (route.name === 'Dashboard') {
                     iconName = 'view-dashboard';
-                  } else if (route.name === 'BudgetList') {
+                  } else if (route.name === 'Budgets List') {
                     iconName = 'playlist-check';
-                  } else if (route.name === 'MyAccount') {
+                  } else if (route.name === 'My Account') {
                     iconName = 'human-greeting';
-                  } else if (route.name === 'NewBudget') {
+                  } else if (route.name === 'Create Budget') {
                     iconName = 'plus-outline';
                   }
 
@@ -99,10 +99,10 @@ const Dashboard = (props) => {
                 inactiveTintColor: 'gray',
               }}
             >
-              <Tab.Screen name="Home" component={UserDash} />
-              <Tab.Screen name="BudgetList" component={BudgetsList} />
-              <Tab.Screen name="NewBudget" component={NewBudget} />
-              <Tab.Screen name="MyAccount" component={MyAccount} />
+              <Tab.Screen name="Dashboard" component={UserDash} />
+              <Tab.Screen name="Budgets List" component={BudgetsList} />
+              <Tab.Screen name="Create Budget" component={NewBudget} />
+              <Tab.Screen name="My Account" component={MyAccount} />
             </Tab.Navigator>
           </NavigationContainer>
       </LinearGradient>

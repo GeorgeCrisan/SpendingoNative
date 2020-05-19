@@ -21,10 +21,10 @@ const styles = StyleSheet.create({
   formCard: {
     flex: 1,
     backgroundColor: '#fff',
-    maxHeight: '70%',
     padding: 16,
     marginLeft: 16,
     borderRadius: 5,
+    marginBottom: 32,
     marginTop: 10,
     marginRight: 16
   },
