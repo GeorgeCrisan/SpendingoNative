@@ -69,13 +69,13 @@ const Dashboard = (props) => {
   return (<>
     <View style={styles.container}>
       <LinearGradient
-        style={styles.gradient}
+        style={{flex: 1}}
         start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
         colors={['#242478', '#3b5998', '#1b9bb5']}>
 
           <NavigationContainer  independent={true}>
             <Tab.Navigator
-              activeColor="lime"
+              activeColor="#242478"
               screenOptions={({ route }) => ({
                 tabBarIcon: ({ focused, color, size }) => {
                   let iconName;
@@ -91,7 +91,7 @@ const Dashboard = (props) => {
                   }
 
                   // You can return any component that you like here!
-                  return <Icon name={iconName} size={26} color={focused ? '#fff' : '#fff' } />;
+                  return <Icon name={iconName} size={26} color={focused ? '#242478' : '#fff' } />;
                 },
               })}
               tabBarOptions={{
