@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     justifyContent: 'center',
-    maxHeight: 400,
+    maxHeight: 460,
     padding: 16,
     marginLeft: 16,
     borderRadius: 5,
@@ -132,7 +132,14 @@ const Resetpassword = (props) => {
         style={styles.gradient}
         start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
         colors={['#242478', '#3b5998', '#1b9bb5']}>
-        <Header customText={'Request a link to reset your password'} />
+        
+        <Text style={{textAlign: 'center',
+          fontSize: 26,
+          fontWeight: 'bold',
+          marginTop: 16,
+          marginBottom: 32,
+          color: 'white',
+          fontFamily: 'Mina-Regular'}}> Request reset link by email</Text>
 
         <View style={styles.formCard}>
           {!done && <>
@@ -140,7 +147,7 @@ const Resetpassword = (props) => {
             name="envelope-open-text"
             size={50}
             color="#faa500"
-            style={{ alignSelf: 'center', paddingBottom: 16 }}
+            style={{ alignSelf: 'center', paddingBottom: 16 , marginBottom: 32}}
           />
           <Input
             placeholder="Email"

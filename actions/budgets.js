@@ -63,6 +63,13 @@ const lberror = (err) => {
 
 
 export const addBudget = (fbdoc) => dispatch => {
+
+  if(!myFirebase.auth().currentUser) {
+    console.log('got here');
+      dispatch(logoutUser());
+    return;
+  }
+
   fbdoc.ownerid = myFirebase.auth().currentUser.uid;
   fbdoc.owner = myFirebase.auth().currentUser.email;
 
@@ -117,6 +124,12 @@ export const removeBudget = (docid) => dispatch => {
 
 export const fetchBudgets = () => dispatch => {
   dispatch(lbstart());
+
+  if(!myFirebase.auth().currentUser) {
+    console.log('got here');
+      dispatch(logoutUser());
+    return;
+  }
 
   myFirebase.firestore().collection('budgets')
     .where('ownerid', "==", myFirebase.auth().currentUser.uid)

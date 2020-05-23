@@ -130,9 +130,8 @@ const Signup = (props) => {
 
         <Text style={{textAlign: 'center',
           fontSize: 26,
-          marginTop: 16,
           fontWeight: 'bold',
-          padding: 16,
+          marginBottom: 16,
           color: 'white',
           fontFamily: 'Mina-Regular'}}> Create account </Text>
 

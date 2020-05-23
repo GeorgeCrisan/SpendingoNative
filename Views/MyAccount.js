@@ -30,7 +30,8 @@ const styles = StyleSheet.create({
   formCard: {
     flex: 1,
     backgroundColor: '#fff',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
+    flexDirection: 'column',
     padding: 16,
     marginLeft: 16,
     borderRadius: 5,
@@ -55,7 +56,8 @@ const styles = StyleSheet.create({
   typography2: {
     fontFamily: 'Mina-Regular',
     fontSize: 16,
-    flex: 1,
+    marginBottom: 8,
+   //flex: 1,
     textAlign: 'center',
     color: 'black'
   },
@@ -103,12 +105,6 @@ const MyAccount = (props) => {
       colors={['#242478', '#3b5998', '#1b9bb5']}>
       <View style={styles.formCard}>
         <Text style={styles.typography1} > Manage account </Text>
-        <Icon
-              name='exclamation'
-              size={62}
-              style={{ marginLeft: 0, marginRight: 0, alignSelf: 'center', marginBottom: 16 }}
-              color={'#faa500'}
-            />
         <Text style={styles.typography2} >If you have decided to delete your account and wipe the data permanently, please insert your password and proceed with the deletion. </Text>
         <Input
           placeholder="Password"
@@ -166,7 +162,7 @@ const MyAccount = (props) => {
       <Button
         text="Log out"
         type="outline"
-        style={{ container: { margin: 16, marginTop: 60, marginBottom: 60, height: 46, backgroundColor: 'orange' }, text: { ...styles.buttonText } }}
+        style={{ container: { margin: 16, marginTop: 30, marginBottom: 30, height: 46, backgroundColor: 'orange' }, text: { ...styles.buttonText } }}
         primary
         onPress={props.logOut}
         raised

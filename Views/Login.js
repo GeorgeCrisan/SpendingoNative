@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     justifyContent: 'center',
-    maxHeight: 440,
+    maxHeight: 480,
     padding: 16,
     marginLeft: 16,
     borderRadius: 5,
@@ -77,8 +77,17 @@ const styles = StyleSheet.create({
   },
   error: {
     color: 'red',
-    paddingBottom: 8
-  }
+    paddingBottom: 8,
+    marginBottom: 8
+  },
+  header: {
+    color: '#fff',
+    fontSize: 25,
+    fontFamily: 'Mina-Bold',
+    textAlign: 'center',
+    alignSelf: 'center',
+    alignContent:'center'
+  },
 });
 
 
@@ -121,7 +130,7 @@ const Login = (props) => {
         style={styles.gradient}
         start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
         colors={['#242478', '#3b5998', '#1b9bb5']}>
-        <Header customText={'Please log in to your account'} />
+        <Text style={styles.header} > Log in </Text>
         <View style={styles.formCard}>
           <Icon
             name="keycdn"
