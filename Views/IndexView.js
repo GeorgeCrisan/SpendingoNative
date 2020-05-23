@@ -63,7 +63,7 @@ const IndexView = (props) => {
   useEffect(() => {
     //props.authEmailPass('georgerdp@gmail.com','test22');
     //temp dispatch shoud add to map actions to props
-    //props.logOut();
+    props.logOut();
   }, []);
 
 

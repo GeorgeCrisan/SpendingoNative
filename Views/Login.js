@@ -20,6 +20,7 @@ import {
 
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Input } from 'react-native-elements';
 // Style
 const STATUSBAR_HEIGHT = Platform.OS === 'ios' ? 20 : StatusBar.currentHeight;
@@ -160,8 +161,8 @@ const Login = (props) => {
             }}
             
             rightIcon={
-              <Icon
-              name='eye'
+              <Icon2
+              name={!eye ? 'eye-off' : 'eye'}
               size={16}
               style={{marginRight: 4}}
               color={borderBottomColor['doi'] ?? 'gray'}

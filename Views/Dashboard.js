@@ -73,7 +73,7 @@ const Dashboard = (props) => {
         start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
         colors={['#242478', '#3b5998', '#1b9bb5']}>
 
-          <NavigationContainer  independent={true}>
+          <NavigationContainer tabPress={()=>{console.log('fuck me')}}  independent={true}>
             <Tab.Navigator
               activeColor="#242478"
               screenOptions={({ route }) => ({

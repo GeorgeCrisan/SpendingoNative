@@ -161,6 +161,13 @@ export const deleteAccount = (password) => dispatch => {
   myFirebase
     .auth()
     .signInWithEmailAndPassword(user.email, password).then((done)=>{
+
+      if(!myFirebase.auth().currentUser) {
+        console.log('got here');
+          dispatch(logoutUser());
+        return;
+      }
+
       db.collection('budgets')
       .where('ownerid', "==", myFirebase.auth().currentUser.uid)
       .orderBy('updateddate', 'desc')

@@ -199,7 +199,7 @@ const Signup = (props) => {
 
             rightIcon={
               <Icon
-              name='eye'
+              name={!eye ? 'eye-off' : 'eye'}
               size={16}
               style={{marginRight: 4}}
               color={borderBottomColor['doi'] ?? 'gray'}

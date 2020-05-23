@@ -44,6 +44,7 @@ export default (state = {
             logoutError: { isError: false, message: "", statusCode: "" },
             createError: { isError: false, message: "", statusCode: "" },
             resetPassErr: {isError: false, message: '', statusCode: ''},
+            deleteAccountErr: {isError: false, message: '', statusCode: ''},
       };
     case DELETE_ACCOUNT_FAIL:
       return {
