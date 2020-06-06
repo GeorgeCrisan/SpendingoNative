@@ -12,9 +12,14 @@ import { store, persistor } from './reduxstore/reduxstore';
 //Views
 import IndexView from './Views/IndexView';
 
+    //dasdsadfdsfds
+    
 const App = () => {
+
+
   return (
     <>
+
 
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
