@@ -57,7 +57,7 @@ const UserDash = (props, { navigation }) => {
   );
 };
 
-function mapDsipatchToProps(dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     logOut: () => {
       dispatch(logoutUser());
@@ -78,4 +78,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, mapDsipatchToProps)(UserDash);
+export default connect(mapStateToProps, mapDispatchToProps)(UserDash);

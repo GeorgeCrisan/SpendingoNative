@@ -178,7 +178,7 @@ const MyAccount = (props) => {
   );
 };
 
-function mapDsipatchToProps(dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     logOut: () => {
       dispatch(logoutUser());
@@ -200,4 +200,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, mapDsipatchToProps)(MyAccount);
+export default connect(mapStateToProps, mapDispatchToProps)(MyAccount);

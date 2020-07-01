@@ -201,7 +201,7 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDsipatchToProps(dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     passwordReset: (email, pass) => {
       dispatch(passwordReset(email , pass));
@@ -212,4 +212,4 @@ function mapDsipatchToProps(dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDsipatchToProps)(Resetpassword);
+export default connect(mapStateToProps, mapDispatchToProps)(Resetpassword);

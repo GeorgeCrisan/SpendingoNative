@@ -243,7 +243,7 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDsipatchToProps(dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     createUser: (email, pass, dn) => {
       dispatch(createUser(email , pass, dn));
@@ -254,4 +254,4 @@ function mapDsipatchToProps(dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDsipatchToProps)(Signup);
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);

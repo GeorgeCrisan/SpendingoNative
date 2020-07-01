@@ -219,7 +219,7 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDsipatchToProps(dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     authEmailPass: (email, pass) => {
       dispatch(loginUser(email , pass));
@@ -230,4 +230,4 @@ function mapDsipatchToProps(dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDsipatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

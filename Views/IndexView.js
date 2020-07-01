@@ -128,7 +128,7 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDsipatchToProps(dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     logOut: () => {
       dispatch(logoutUser());
@@ -136,4 +136,4 @@ function mapDsipatchToProps(dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDsipatchToProps)(IndexView);
+export default connect(mapStateToProps, mapDispatchToProps)(IndexView);
